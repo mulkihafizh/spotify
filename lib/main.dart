@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'screen/login_screen.dart';
 import 'screen/home_screen.dart';
+import 'screen/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,10 +20,11 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      initialRoute: "/login",
+      initialRoute: "/splash",
       routes: {
         "/login": (context) => const LoginScreen(),
         "/home": (context) => const HomeScreen(),
+        '/splash': (context) => const SplashScreen(),
       },
     );
   }

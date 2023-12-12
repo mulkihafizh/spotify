@@ -17,7 +17,7 @@ class LoginScreenState extends State<LoginScreen> {
   }
 
   void checkToken() async {
-    Spotify.checkToken().then((value) {
+    Spotify.checkValidity().then((value) {
       if (value) {
         Navigator.pushReplacementNamed(context, "/home");
       }
@@ -32,10 +32,7 @@ class LoginScreenState extends State<LoginScreen> {
     }
 
     await Spotify.getAccessToken().then((token) {
-      // ignore: use_build_context_synchronously
-      if (prefs.getString("accessToken") != null) {
-        Navigator.pushReplacementNamed(context, "/home");
-      }
+      Navigator.pushReplacementNamed(context, "/home");
     });
   }
 
@@ -87,11 +84,11 @@ class LoginScreenState extends State<LoginScreen> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 30, 215, 96),
                     padding: const EdgeInsets.symmetric(
-                      horizontal: 50,
-                      vertical: 30,
+                      horizontal: 30,
+                      vertical: 20,
                     ),
                     textStyle: const TextStyle(
-                      fontSize: 20,
+                      fontSize: 15,
                       fontWeight: FontWeight.bold,
                     ),
                     shape: RoundedRectangleBorder(
