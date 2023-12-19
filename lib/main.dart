@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:spotify/screen/menu_screen.dart';
 import 'screen/login_screen.dart';
-import 'screen/home_screen.dart';
 import 'screen/splash_screen.dart';
 
 void main() {
@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/splash",
       routes: {
         "/login": (context) => const LoginScreen(),
-        "/home": (context) => const HomeScreen(),
+        "/home": (context) => const MenuScreen(),
         '/splash': (context) => const SplashScreen(),
       },
     );

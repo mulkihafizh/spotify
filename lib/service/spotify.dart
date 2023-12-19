@@ -150,6 +150,18 @@ class Spotify {
     return status;
   }
 
+  static search(String query) async {
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    var token = prefs.getString("accessToken");
+    Map<String, dynamic> search = await http.get(
+        Uri.parse(
+            "https://api.spotify.com/v1/search?q=$query&type=artist%2Ctrack&limit=10"),
+        headers: {
+          "Authorization": "Bearer $token"
+        }).then((value) => jsonDecode(value.body) as Map<String, dynamic>);
+    return search;
+  }
+
   static playSong(String id) {
     SpotifySdk.play(
       spotifyUri: id,
