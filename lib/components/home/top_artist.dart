@@ -53,7 +53,7 @@ Widget topArtists(List<dynamic> topArtist) {
     height: 150,
     child: NotificationListener<OverscrollIndicatorNotification>(
       onNotification: (overscroll) {
-        overscroll.disallowIndicator(); // Prevent overscroll indicator
+        overscroll.disallowIndicator();
         return true;
       },
       child: ShaderMask(

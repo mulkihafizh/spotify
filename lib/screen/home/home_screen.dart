@@ -1,12 +1,11 @@
+import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import '../../service/spotify.dart';
-import 'dart:async';
 import '../../components/home/last_played_hero.dart';
 import '../../components/home/just_for_you.dart';
 import '../../components/home/top_artist.dart';
 import '../../components/home/top_songs.dart';
-
 import '../../components/home/me.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -84,6 +83,7 @@ class _HomeScreenState extends State<HomeScreen> {
         });
       }
     });
+
     Timer.periodic(const Duration(seconds: 1), (timer) {
       if (me.isNotEmpty &&
           topArtist.isNotEmpty &&
@@ -95,6 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
             isLoading = false;
           });
         }
+        timer.cancel();
       }
     });
   }

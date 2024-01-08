@@ -22,6 +22,8 @@ class Spotify {
     "limit": "10",
     "offset": "0",
   };
+  static String lyricsEndpoint =
+      "https://spotify-lyric-api-984e7b4face0.herokuapp.com/";
 
   static getAccessToken() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -160,6 +162,14 @@ class Spotify {
           "Authorization": "Bearer $token"
         }).then((value) => jsonDecode(value.body) as Map<String, dynamic>);
     return search;
+  }
+
+  static getLyrics(String id) async {
+    var lyrics = await http
+        .get(Uri.parse("$lyricsEndpoint?trackid=$id"))
+        .then((value) => jsonDecode(value.body) as Map<String, dynamic>);
+
+    return lyrics["lines"];
   }
 
   static playSong(String id) {
