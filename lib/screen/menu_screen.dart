@@ -26,6 +26,7 @@ class _MenuScreenState extends State<MenuScreen> {
   bool isPlaying = false;
   Map<String, dynamic> nowPlaying = {};
   int navIndex = 0;
+  int progress = 0;
   List<dynamic> lyricsText = [];
 
   songProgress() {
@@ -39,17 +40,30 @@ class _MenuScreenState extends State<MenuScreen> {
     }
   }
 
+  void startDuration() {
+    Timer.periodic(const Duration(milliseconds: 1), (timer) {
+      if (mounted) {
+        setState(() {
+          progress = progress++;
+        });
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
     Timer.periodic(const Duration(seconds: 1), (timer) {
       Spotify.nowPlaying().then((value) {
         if (mounted) {
-          setState(() {
-            nowPlaying = value;
-            isPlaying = nowPlaying['is_playing'];
-            percentage = songProgress();
-          });
+          if (nowPlaying["item"]["id"] != value["item"]["id"] ||
+              nowPlaying.isNotEmpty) {
+            setState(() {
+              nowPlaying = value;
+              isPlaying = value["is_playing"];
+              percentage = songProgress();
+            });
+          }
         }
       });
       if (isPlaying) {

@@ -3,17 +3,16 @@ import "package:http/http.dart" as http;
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter/foundation.dart' show kIsWeb;
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class Spotify {
-  static String clientId = "7b5af824f38d4aa4930218f1784fe2f7";
+  static String clientId = dotenv.env["CLIENT_ID"]!;
+  static String clientSecret = dotenv.env["CLIENT_SECRET"]!;
   static String redirectUrl = "https://apayah.vercel.app";
   static String topArtist = "https://api.spotify.com/v1/me/top/artists";
   static String topSong = "https://api.spotify.com/v1/me/top/tracks";
   static String tokenEndpoint = "https://accounts.spotify.com/api/token";
   static String swapEndpoint = "https://api.spotify.com/v1/swap";
-  static String clientSecret = "2fcafad8943f4352a27df8fc1f86237d";
-  static String basic =
-      "N2I1YWY4MjRmMzhkNGFhNDkzMDIxOGYxNzg0ZmUyZjc6MmZjYWZhZDg5NDNmNDM1MmEyN2RmOGZjMWY4NjIzN2Q=";
   static String recommendedPlaylist =
       "https://api.spotify.com/v1/browse/featured-playlists";
   static String playlistParam = "country=ID&locale=id_ID&timestamp=";
